@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import { Spinner } from "../layouts/Spinner";
 import { UserItem } from "./UserItem";
-import PropTypes from "prop-types";
+import { GithubContext } from "../../context/github/githubContext";
 
-export const Users = ({ loading, users }) => {
+export const Users = () => {
+  /// now we have access to state from githubState
+  const githubContext = useContext(GithubContext);
+  const { loading, users } = githubContext;
+
   return (
     <div style={userStyle}>
       {loading ? (
@@ -18,9 +23,4 @@ const userStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(3 ,1fr)",
   gridGap: "1rem",
-};
-
-Users.propTypes = {
-  users: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
 };
