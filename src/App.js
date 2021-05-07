@@ -1,13 +1,13 @@
 import { Navbar } from "./components/layouts/Navbar";
-import { Users } from "./components/users/Users";
-import { Search } from "./components/users/Search";
 import { Alert } from "./components/layouts/Alert";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { About } from "./components/pages/About";
 import { User } from "./components/users/User";
 import GithubState from "./context/github/GithubState";
 import AlertState from "./context/alert/AlertState";
+import { HomePage } from "./components/pages/HomePage";
 import "./App.css";
+import { NotFound } from "./components/pages/NotFound";
 
 export const App = () => {
   return (
@@ -20,18 +20,10 @@ export const App = () => {
               <Alert />
 
               <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={(props) => (
-                    <>
-                      <Search />
-                      <Users />
-                    </>
-                  )}
-                />
+                <Route exact path="/" component={HomePage} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/user/:login" component={User} />
+                <Route component={NotFound} />
               </Switch>
             </div>
           </div>
